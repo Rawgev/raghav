@@ -1,3 +1,4 @@
+import { useIsMobile } from '../../hooks/useIsMobile'
 import { personal } from '../../data'
 
 const GithubIcon = () => (
@@ -13,13 +14,24 @@ const InstagramIcon = () => (
 )
 
 const socials = [
-  { key: 'github',    Icon: GithubIcon,    label: 'GitHub' },
+  { key: 'github', Icon: GithubIcon, label: 'GitHub' },
   { key: 'instagram', Icon: InstagramIcon, label: 'Instagram' },
 ]
 
 export default function Footer() {
+  const isMobile = useIsMobile()
   return (
-    <footer style={{ borderTop: '1px solid var(--border)', padding: '1.4rem 3rem', maxWidth: 1180, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <footer style={{
+      borderTop: '1px solid var(--border)',
+      padding: isMobile ? '1.2rem' : '1.4rem 3rem',
+      maxWidth: 1180, margin: '0 auto',
+      display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      gap: isMobile ? '1rem' : 0,
+      textAlign: isMobile ? 'center' : 'left',
+    }}>
       <span style={{ fontSize: '0.76rem', color: 'var(--muted)' }}>
         Copyright © {new Date().getFullYear()} {personal.name}. All rights reserved.
       </span>
@@ -34,7 +46,7 @@ export default function Footer() {
             aria-label={label}
             style={{ width: 36, height: 36, border: '1px solid var(--border)', borderRadius: 8, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', cursor: 'pointer', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s, background 0.2s' }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--violet3)'; e.currentTarget.style.color = 'var(--violet3)'; e.currentTarget.style.background = 'rgba(160,84,252,0.08)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)';  e.currentTarget.style.color = 'var(--muted)';   e.currentTarget.style.background = 'transparent' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--muted)'; e.currentTarget.style.background = 'transparent' }}
           >
             <Icon />
           </a>

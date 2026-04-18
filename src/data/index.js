@@ -3,7 +3,7 @@ export const personal = {
   name: 'Raghav',
   location: 'India',
   email: 'raghavchauhan1706@gmail.com',          // 🔧 update this
-  portfolioUrl: 'raghav.vercel.app',  // 🔧 update once deployed
+  portfolioUrl: 'raghav-lac.vercel.app',  // 🔧 update once deployed
   roles: [
     'Full Stack Developer',
     'React Developer',
@@ -58,8 +58,8 @@ export const projects = [
     title: 'Personal Portfolio',
     subtitle: 'This Website',
     description: 'My personal developer portfolio built with React. Features scroll animations, an orbiting skills section, typewriter effects and a dark violet aesthetic.',
-    url: 'raghav.vercel.app',           // 🔧 update
-    liveLink: '#',                       // 🔧 update once deployed
+    url: 'raghav-lac.vercel.app',           // 🔧 update
+    liveLink: 'https://raghav-lac.vercel.app/',                       // 🔧 update once deployed
     techIcons: ['Re', 'Tw', 'Vt', 'Js'],
     floatTags: ['React', 'Tailwind', 'Vite', 'CSS'],
   },

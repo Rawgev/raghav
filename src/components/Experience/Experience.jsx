@@ -1,14 +1,29 @@
+import { useIsMobile } from '../../hooks/useIsMobile'
 import FadeSection from '../ui/FadeSection'
 import SectionLabel from '../ui/SectionLabel'
 import { experience } from '../../data'
 
 export default function Experience() {
+  const isMobile = useIsMobile()
   return (
     <FadeSection>
-      <section id="experience" style={{ padding: '5rem 3rem', maxWidth: 1180, margin: '0 auto' }}>
+      <section
+        id="experience"
+        style={{
+          padding: isMobile ? '3rem 1.2rem' : '5rem 3rem',
+          maxWidth: 1180,
+          margin: '0 auto'
+        }}
+      >
         <SectionLabel>My Work Experience</SectionLabel>
 
-        <div style={{ marginTop: '1.8rem', position: 'relative', paddingLeft: '2rem' }}>
+        <div
+          style={{
+            marginTop: '1.8rem',
+            position: 'relative',
+            paddingLeft: isMobile ? '1.5rem' : '2rem'
+          }}
+        >
 
           {/* Vertical timeline line */}
           <div style={{
@@ -23,7 +38,7 @@ export default function Experience() {
               key={job.id}
               style={{ position: 'relative', marginBottom: '2rem', background: 'var(--card2)', border: '1px solid var(--border)', borderRadius: 14, padding: '1.4rem 1.6rem', transition: 'border-color 0.25s, transform 0.25s' }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border2)'; e.currentTarget.style.transform = 'translateX(4px)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)';  e.currentTarget.style.transform = 'translateX(0)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateX(0)' }}
             >
               {/* Dot on timeline */}
               <div style={{ position: 'absolute', left: '-2.45rem', top: '1.6rem', width: 12, height: 12, borderRadius: '50%', background: 'var(--violet2)', border: '2px solid var(--violet3)', boxShadow: '0 0 10px rgba(160,84,252,0.5)' }} />

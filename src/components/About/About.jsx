@@ -1,7 +1,7 @@
+import { useIsMobile } from '../../hooks/useIsMobile'
 import FadeSection from '../ui/FadeSection'
 import SectionLabel from '../ui/SectionLabel'
 import { techStack } from '../../data'
-
 const codeBg = `// Raghav's stack
 import React from 'react'
 import express from 'express'
@@ -19,12 +19,13 @@ const App = () => {
 }`
 
 export default function About() {
+  const isMobile = useIsMobile()
   return (
     <FadeSection>
       <section id="about" style={{ padding: '5rem 3rem', maxWidth: 1180, margin: '0 auto' }}>
         <SectionLabel>About me</SectionLabel>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
 
           {/* Left column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

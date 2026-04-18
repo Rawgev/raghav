@@ -1,25 +1,38 @@
+import { useIsMobile } from '../../hooks/useIsMobile'
 import FadeSection from '../ui/FadeSection'
 import SectionLabel from '../ui/SectionLabel'
 import { skills } from '../../data'
 
 const variantStyles = {
-  violet: { background: 'rgba(100,40,200,0.2)',  border: '1px solid rgba(160,80,255,0.4)' },
-  pink:   { background: 'rgba(160,40,160,0.18)', border: '1px solid rgba(200,80,200,0.35)' },
-  teal:   { background: 'rgba(20,100,160,0.18)', border: '1px solid rgba(60,140,220,0.3)' },
+  violet: { background: 'rgba(100,40,200,0.2)', border: '1px solid rgba(160,80,255,0.4)' },
+  pink: { background: 'rgba(160,40,160,0.18)', border: '1px solid rgba(200,80,200,0.35)' },
+  teal: { background: 'rgba(20,100,160,0.18)', border: '1px solid rgba(60,140,220,0.3)' },
 }
 
 export default function Skills() {
+  const isMobile = useIsMobile()
   return (
     <FadeSection>
       <section id="skills" style={{ padding: '5rem 3rem', maxWidth: 1180, margin: '0 auto' }}>
         <SectionLabel>What I work with</SectionLabel>
 
-        <div style={{ position: 'relative', height: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '2rem' }}>
+        <div
+          style={{
+            position: 'relative',
+            height: isMobile ? 300 : 420,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '2rem',
+            transform: isMobile ? 'scale(0.6)' : 'scale(1)',
+            transformOrigin: 'center center',
+          }}
+        >
 
           {/* Orbit rings */}
           {[
             { size: 200, duration: '18s', reverse: false },
-            { size: 310, duration: '28s', reverse: true  },
+            { size: 310, duration: '28s', reverse: true },
             { size: 400, duration: '38s', reverse: false },
           ].map(({ size, duration, reverse }) => (
             <div key={size} style={{
@@ -49,7 +62,7 @@ export default function Skills() {
               key={skill.label}
               style={{ position: 'absolute', transform: `translate(${skill.x}px,${skill.y}px)`, transition: 'transform 0.2s', cursor: 'default' }}
               onMouseEnter={e => (e.currentTarget.style.transform = `translate(${skill.x}px,${skill.y}px) scale(1.15)`)}
-              onMouseLeave={e => (e.currentTarget.style.transform  = `translate(${skill.x}px,${skill.y}px)`)}
+              onMouseLeave={e => (e.currentTarget.style.transform = `translate(${skill.x}px,${skill.y}px)`)}
             >
               <div style={{
                 ...variantStyles[skill.variant],
