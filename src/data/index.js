@@ -63,6 +63,16 @@ export const projects = [
     techIcons: ['Re', 'Tw', 'Vt', 'Js'],
     floatTags: ['React', 'Tailwind', 'Vite', 'CSS'],
   },
+  {
+    id: 'ai-crm-hcp-module',
+    type: 'mern',
+    title: 'AI CRM HCP Module',
+    subtitle: 'Healthcare CRM',
+    description: 'An AI-powered CRM module for managing HCP data, improving customer workflows and supporting smarter relationship management through a clean dashboard experience.',
+    url: 'ai-crm-hcp-module.vercel.app',
+    liveLink: 'https://ai-crm-hcp-module.vercel.app',
+    techIcons: ['Py', 'Js', 'Cs', 'Ht'],
+  },
 ]
 
 // ── EXPERIENCE ───────────────────────────────────────────────────
