@@ -13,6 +13,11 @@ const links = [
 export default function Navbar() {
   const isMobile = useIsMobile()
   const [menuOpen, setMenuOpen] = useState(false)
+  const scrollToTop = event => {
+    event.preventDefault()
+    setMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -22,15 +27,19 @@ export default function Navbar() {
         borderBottom: '1px solid var(--border)',
         position: 'sticky', top: 0, zIndex: 100,
         background: 'rgba(7,6,15,0.88)', backdropFilter: 'blur(14px)',
-      }}>
+        }}>
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text)' }}>
+          <a
+            href="#home"
+            onClick={scrollToTop}
+            style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text)', textDecoration: 'none', cursor: 'pointer' }}
+          >
             Welcome to{' '}
             <span style={{ fontFamily: "'Dancing Script',cursive", color: 'var(--violet3)', fontSize: '1.2rem' }}>
               {personal.name}'s
             </span>
-          </div>
+          </a>
         </div>
 
         {/* Desktop links */}
