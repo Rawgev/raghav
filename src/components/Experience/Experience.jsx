@@ -62,7 +62,7 @@ export default function Experience() {
 
               {/* Bullets */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                {job.bullets.map((b, i) => (
+                {job.bullets?.map((b, i) => (
                   <div key={i} style={{ fontSize: '0.8rem', color: 'rgba(180,170,220,0.75)', lineHeight: 1.5, display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                     <span style={{ color: 'var(--violet3)', fontSize: '0.7rem', flexShrink: 0, marginTop: 2 }}>▸</span>
                     {b}

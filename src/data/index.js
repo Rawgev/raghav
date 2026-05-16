@@ -73,6 +73,16 @@ export const projects = [
     liveLink: 'https://ai-crm-hcp-module.vercel.app',
     techIcons: ['Py', 'Js', 'Cs', 'Ht'],
   },
+  {
+  id: 'taskflow',
+  type: 'mern',
+  title: 'TaskFlow',
+  subtitle: 'Collaborative Task Manager',
+  description: 'A full-stack collaborative task management platform featuring JWT authentication, role-based access control, drag-and-drop task boards, real-time updates with WebSockets, and paginated activity tracking for efficient team workflows.',
+  url: 'your-taskflow-url.vercel.app',
+  liveLink: 'https://task-manager-cyan-rho.vercel.app',
+  techIcons: ['Re', 'Nd', 'Ex', 'Mg'],
+},
 ]
 
 // ── EXPERIENCE ───────────────────────────────────────────────────
