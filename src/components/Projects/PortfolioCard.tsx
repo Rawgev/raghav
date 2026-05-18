@@ -1,14 +1,29 @@
 import { useRef } from 'react'
+import type { CSSProperties } from 'react'
+import type { Project } from '../../data'
 
-const FLOAT_POSITIONS = [
+interface PortfolioCardProps {
+  project: Project
+}
+
+interface FloatPosition {
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+const FLOAT_POSITIONS: FloatPosition[] = [
   { top: 14, left: 10 },
   { top: 14, right: 10 },
   { bottom: 14, left: 10 },
   { bottom: 14, right: 10 },
 ]
 
-export default function PortfolioCard({ project }) {
-  const screenRef = useRef(null)
+const windowDotColors = ['#ff5f57', '#febc2e', '#28c840'] as const
+
+export default function PortfolioCard({ project }: PortfolioCardProps) {
+  const screenRef = useRef<HTMLDivElement>(null)
 
   const handleMouseEnter = () => {
     if (screenRef.current) {
@@ -36,16 +51,16 @@ export default function PortfolioCard({ project }) {
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 60%,rgba(120,40,220,0.18) 0%,transparent 70%)', animation: 'glowPulse 3s ease-in-out infinite', pointerEvents: 'none' }} />
 
         {/* Floating tech tags */}
-        {project.floatTags.map((tag, i) => (
+        {(project.floatTags ?? []).map((tag, i) => (
           <div key={tag} style={{
             position: 'absolute',
             fontSize: '0.62rem', fontWeight: 600,
             background: 'rgba(14,10,30,0.9)', border: '1px solid rgba(140,80,255,0.3)',
             borderRadius: 6, padding: '3px 8px', color: 'var(--violet3)',
-            animation: `floatTag 4s ease-in-out infinite`,
+            animation: 'floatTag 4s ease-in-out infinite',
             animationDelay: `${i * 0.5}s`,
             zIndex: 3, pointerEvents: 'none',
-            ...FLOAT_POSITIONS[i],
+            ...(FLOAT_POSITIONS[i] as CSSProperties),
           }}>
             {tag}
           </div>
@@ -60,7 +75,7 @@ export default function PortfolioCard({ project }) {
         >
           {/* Browser bar */}
           <div style={{ background: 'rgba(100,50,200,0.18)', padding: '5px 10px', display: 'flex', alignItems: 'center', gap: 5 }}>
-            {['#ff5f57', '#febc2e', '#28c840'].map(c => (
+            {windowDotColors.map(c => (
               <div key={c} style={{ width: 6, height: 6, borderRadius: '50%', background: c }} />
             ))}
             <span style={{ fontSize: '0.52rem', color: 'var(--muted)', flex: 1, textAlign: 'center', letterSpacing: '0.03em' }}>
@@ -72,7 +87,7 @@ export default function PortfolioCard({ project }) {
             <div style={{ fontSize: '0.62rem', fontWeight: 700, color: 'rgba(192,132,252,0.9)', fontFamily: "'Dancing Script',cursive" }}>
               Raghav<span className="typed-cursor" style={{ width: 2, height: 8 }} />
             </div>
-            {['90%', '70%', '80%'].map((w, i) => (
+            {(['90%', '70%', '80%'] as const).map((w, i) => (
               <div key={i} style={{ height: 5, borderRadius: 2, background: 'rgba(140,80,255,0.15)', width: w, margin: '1px 0' }} />
             ))}
             <div style={{ height: 14, width: 60, borderRadius: 4, background: 'rgba(120,50,220,0.3)', border: '1px solid rgba(160,80,255,0.3)', marginTop: 4 }} />

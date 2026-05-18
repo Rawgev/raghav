@@ -1,40 +1,69 @@
 import { useEffect, useRef } from 'react'
+import type { Project } from '../../data'
 
-export default function MernCard({ project }) {
-  const canvasRef = useRef(null)
+interface MernCardProps {
+  project: Project
+}
+
+interface Particle {
+  x: number
+  y: number
+  r: number
+  dx: number
+  dy: number
+  alpha: number
+}
+
+export default function MernCard({ project }: MernCardProps) {
+  const canvasRef  = useRef<HTMLCanvasElement>(null)
+  const mockupRef  = useRef<HTMLDivElement>(null)
+  const visibleRef = useRef(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const resize = () => {
-      const rect = canvas.parentElement.getBoundingClientRect()
-      canvas.width  = rect.width
-      canvas.height = rect.height
+      const rect = canvas.parentElement?.getBoundingClientRect()
+      if (!rect) return
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      canvas.width  = rect.width * dpr
+      canvas.height = rect.height * dpr
+      canvas.style.width = `${rect.width}px`
+      canvas.style.height = `${rect.height}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
     resize()
 
-    const particles = Array.from({ length: 38 }, () => ({
-      x:     Math.random() * canvas.width,
-      y:     Math.random() * canvas.height,
+    const width = canvas.parentElement?.clientWidth || canvas.width
+    const height = canvas.parentElement?.clientHeight || canvas.height
+
+    const particles: Particle[] = Array.from({ length: reducedMotion ? 14 : 24 }, () => ({
+      x:     Math.random() * width,
+      y:     Math.random() * height,
       r:     Math.random() * 1.8 + 0.4,
       dx:    (Math.random() - 0.5) * 0.35,
       dy:    (Math.random() - 0.5) * 0.35,
       alpha: Math.random() * 0.5 + 0.15,
     }))
 
-    let animId
+    let animId: number
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const logicalWidth = canvas.parentElement?.clientWidth || canvas.width
+      const logicalHeight = canvas.parentElement?.clientHeight || canvas.height
+
+      ctx.clearRect(0, 0, logicalWidth, logicalHeight)
       particles.forEach(p => {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(160,84,252,${p.alpha})`
         ctx.fill()
         p.x += p.dx; p.y += p.dy
-        if (p.x < 0 || p.x > canvas.width)  p.dx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1
+        if (p.x < 0 || p.x > logicalWidth)  p.dx *= -1
+        if (p.y < 0 || p.y > logicalHeight) p.dy *= -1
       })
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -51,17 +80,38 @@ export default function MernCard({ project }) {
           }
         }
       }
-      animId = requestAnimationFrame(draw)
+      if (visibleRef.current && !reducedMotion) {
+        animId = requestAnimationFrame(draw)
+      }
     }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting
+        if (entry.isIntersecting) {
+          cancelAnimationFrame(animId)
+          draw()
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    const resizeObserver = new ResizeObserver(resize)
+    observer.observe(canvas)
+    if (canvas.parentElement) resizeObserver.observe(canvas.parentElement)
+
     draw()
-    return () => cancelAnimationFrame(animId)
+    return () => {
+      observer.disconnect()
+      resizeObserver.disconnect()
+      cancelAnimationFrame(animId)
+    }
   }, [])
 
-  const mockupRef = useRef(null)
   const handleMouseEnter = () => {
     if (mockupRef.current) {
-      mockupRef.current.style.transform  = 'scale(1.04) translateY(-4px)'
-      mockupRef.current.style.boxShadow  = '0 12px 40px rgba(120,40,255,0.25)'
+      mockupRef.current.style.transform = 'scale(1.04) translateY(-4px)'
+      mockupRef.current.style.boxShadow = '0 12px 40px rgba(120,40,255,0.25)'
     }
   }
   const handleMouseLeave = () => {
@@ -70,6 +120,13 @@ export default function MernCard({ project }) {
       mockupRef.current.style.boxShadow = ''
     }
   }
+
+  const todoRows: Array<[string, string]> = [
+    ['done', '70%'],
+    ['done', '85%'],
+    ['',     '60%'],
+    ['',     '75%'],
+  ]
 
   return (
     <div
@@ -95,14 +152,14 @@ export default function MernCard({ project }) {
         >
           {/* Top bar */}
           <div style={{ background: 'rgba(100,50,200,0.22)', display: 'flex', alignItems: 'center', gap: 5, padding: '0 10px' }}>
-            {['#ff5f57', '#febc2e', '#28c840'].map(c => (
+            {(['#ff5f57', '#febc2e', '#28c840'] as const).map(c => (
               <div key={c} style={{ width: 6, height: 6, borderRadius: '50%', background: c }} />
             ))}
           </div>
           {/* Body */}
           <div style={{ padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
             <div style={{ height: 9, borderRadius: 3, background: 'rgba(140,80,255,0.18)', width: '55%', marginBottom: 4 }} />
-            {[['done', '70%'], ['done', '85%'], ['', '60%'], ['', '75%']].map(([done, w], i) => (
+            {todoRows.map(([done, w], i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <div style={{ width: 9, height: 9, borderRadius: 2, flexShrink: 0, background: done ? 'rgba(160,84,252,0.6)' : 'transparent', border: done ? 'none' : '1px solid rgba(160,84,252,0.5)' }} />
                 <div style={{ height: 7, borderRadius: 2, background: 'rgba(140,80,255,0.2)', width: w, flex: 1 }} />

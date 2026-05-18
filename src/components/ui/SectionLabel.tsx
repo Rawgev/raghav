@@ -1,4 +1,10 @@
-export default function SectionLabel({ children }) {
+import type { ReactNode } from 'react'
+
+interface SectionLabelProps {
+  children: ReactNode
+}
+
+export default function SectionLabel({ children }: SectionLabelProps) {
   return (
     <p style={{
       fontSize: '0.72rem',

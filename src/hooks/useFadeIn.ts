@@ -1,7 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 
-export function useFadeIn(threshold = 0.12) {
-  const ref = useRef(null)
+interface UseFadeInReturn {
+  ref: RefObject<HTMLDivElement>
+  visible: boolean
+}
+
+export function useFadeIn(threshold = 0.12): UseFadeInReturn {
+  const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
