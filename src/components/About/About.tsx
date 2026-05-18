@@ -2,6 +2,7 @@ import { useIsMobile } from '../../hooks/useIsMobile'
 import FadeSection from '../ui/FadeSection'
 import SectionLabel from '../ui/SectionLabel'
 import { techStack } from '../../data'
+
 const codeBg = `// Raghav's stack
 import React from 'react'
 import express from 'express'

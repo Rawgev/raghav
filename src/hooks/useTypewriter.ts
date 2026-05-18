@@ -1,17 +1,25 @@
 import { useState, useEffect } from 'react'
 
-export function useTypewriter(words, typingSpeed = 90, deletingSpeed = 55, pauseMs = 1800) {
+export function useTypewriter(
+  words: string[],
+  typingSpeed = 90,
+  deletingSpeed = 55,
+  pauseMs = 1800,
+): string {
   const [text, setText] = useState('')
   const [wordIndex, setWordIndex] = useState(0)
   const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     const current = words[wordIndex]
+    let pauseTimeout: number | undefined
     const timeout = setTimeout(() => {
       if (!deleting) {
         const next = current.slice(0, text.length + 1)
         setText(next)
-        if (next === current) setTimeout(() => setDeleting(true), pauseMs)
+        if (next === current) {
+          pauseTimeout = window.setTimeout(() => setDeleting(true), pauseMs)
+        }
       } else {
         const next = current.slice(0, text.length - 1)
         setText(next)
@@ -22,7 +30,10 @@ export function useTypewriter(words, typingSpeed = 90, deletingSpeed = 55, pause
       }
     }, deleting ? deletingSpeed : typingSpeed)
 
-    return () => clearTimeout(timeout)
+    return () => {
+      clearTimeout(timeout)
+      if (pauseTimeout) clearTimeout(pauseTimeout)
+    }
   }, [text, deleting, wordIndex, words, typingSpeed, deletingSpeed, pauseMs])
 
   return text
