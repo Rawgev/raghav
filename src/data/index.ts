@@ -23,7 +23,7 @@ export interface Project {
   floatTags?: string[]
   image: string
   imageFit?: 'cover' | 'contain'
-  
+
 }
 
 export interface ExperienceItem {
@@ -64,7 +64,7 @@ export const personal: Personal = {
     'Problem Solver',
   ],
   socials: {
-    github:    'https://github.com/Rawgev',                       // 🔧 update
+    github: 'https://github.com/Rawgev',                       // 🔧 update
     instagram: 'https://www.instagram.com/bhonduraghav/',        // 🔧 update
     linkedin: 'https://www.linkedin.com/in/raghav-chauhan-012498404' // 🔧 update
   },
@@ -78,26 +78,39 @@ export const techStack: string[] = [
 // ── SKILLS ORBIT ─────────────────────────────────────────────────
 export const skills: Skill[] = [
   // orbit 1 — violet
-  { label: 'React',     variant: 'violet', x:    0, y: -100 },
-  { label: 'Node.js',   variant: 'violet', x:  100, y:    0 },
-  { label: 'Express',   variant: 'violet', x:    0, y:  100 },
-  { label: 'MongoDB',   variant: 'violet', x: -120, y:    0 },
+  { label: 'React', variant: 'violet', x: 0, y: -100 },
+  { label: 'Node.js', variant: 'violet', x: 100, y: 0 },
+  { label: 'Express', variant: 'violet', x: 0, y: 100 },
+  { label: 'MongoDB', variant: 'violet', x: -120, y: 0 },
 
   // orbit 2 — pink
-  { label: 'REST APIs', variant: 'pink',   x: -190, y:    0 },
-  { label: 'Git',       variant: 'pink',   x: -120, y:  120 },
-  { label: 'Tailwind',  variant: 'pink',   x:    0, y: -165 },
+  { label: 'REST APIs', variant: 'pink', x: -190, y: 0 },
+  { label: 'Git', variant: 'pink', x: -120, y: 120 },
+  { label: 'Tailwind', variant: 'pink', x: 0, y: -165 },
 
   // orbit 3 — teal
-  { label: 'Docker',    variant: 'teal',   x:  150, y: -145 },
-  { label: 'Vercel',    variant: 'teal',   x:  220, y:    0 },
-  { label: 'Postman',   variant: 'teal',   x: -250, y:    0 },
-  { label: 'VS Code',   variant: 'teal',   x:    0, y:  220 },
-  { label: 'Linux',     variant: 'teal',   x: -150, y: -145 },
+  { label: 'Docker', variant: 'teal', x: 150, y: -145 },
+  { label: 'Vercel', variant: 'teal', x: 220, y: 0 },
+  { label: 'Postman', variant: 'teal', x: -250, y: 0 },
+  { label: 'VS Code', variant: 'teal', x: 0, y: 220 },
+  { label: 'Linux', variant: 'teal', x: -150, y: -145 },
 ]
 // ── PROJECTS ─────────────────────────────────────────────────────
 export const projects: Project[] = [
+
   {
+    id: 'kiroku',
+    type: 'mern',
+    title: 'Kiroku',
+    subtitle: 'Anime & Manga',
+    description: 'A full-stack, responsive anime & manga tracking platform built with TypeScript, React 18, Express, and MongoDB, integrating GraphQL (AniList) and REST (MangaDex) APIs.',
+    url: 'kirokuvault.vercel.app',
+    liveLink: 'https://kirokuvault.vercel.app',
+    techIcons: ['Re', 'Ts', 'Nd', 'Ex', 'Mg', 'Gr', 'R'],
+    floatTags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'TypeScript', 'GraphQL', 'REST APIs'],
+    image: '/projects/kiroku.png',
+    imageFit: 'contain'
+  }, {
     id: 'mern-todo',
     type: 'mern',
     title: 'MERN Todo App',
@@ -106,7 +119,7 @@ export const projects: Project[] = [
     url: 'mern-todo-app-sable-five.vercel.app',
     liveLink: 'https://mern-todo-app-sable-five.vercel.app',
     techIcons: ['Re', 'Nd', 'Ex', 'Mg'],
-    floatTags:  ['React', 'Node.js', 'Express.js', 'MongoDB'],
+    floatTags: ['React', 'Node.js', 'Express.js', 'MongoDB'],
     image: '/projects/todolist.png',
     imageFit: 'cover'
   },
@@ -120,8 +133,8 @@ export const projects: Project[] = [
     liveLink: 'https://raghav-lac.vercel.app/', // 🔧 update once deployed
     techIcons: ['Re', 'Tw', 'Vt', 'Ts'],
     floatTags: ['React', 'Tailwind', 'Vite', 'CSS'],
-     image: '/projects/portfolio.png',
-     imageFit: 'cover'
+    image: '/projects/portfolio.png',
+    imageFit: 'cover'
   },
   {
     id: 'ai-crm-hcp-module',
@@ -137,18 +150,18 @@ export const projects: Project[] = [
     imageFit: 'cover'
   },
   {
-  id: 'task-manager-app',
-  type: 'mern',
-  title: 'Task Manager App',
-  subtitle: 'Productivity Management',
-  description: 'A modern MERN-based task management application that helps users organize tasks, manage workflows, track progress, and improve productivity through a responsive and clean dashboard interface.',
-  url: 'your-task-manager-link.vercel.app',
-  liveLink: 'https://task-manager-cyan-rho.vercel.app/',
-  techIcons: ['Mn', 'Js', 'Tw', 'Re'],
-  floatTags: ['MongoDB', 'JavaScript', 'Tailwind', 'React'],
-  image: '/projects/task-manager.png',
-  imageFit: 'contain'
-},
+    id: 'task-manager-app',
+    type: 'mern',
+    title: 'Task Manager App',
+    subtitle: 'Productivity Management',
+    description: 'A modern MERN-based task management application that helps users organize tasks, manage workflows, track progress, and improve productivity through a responsive and clean dashboard interface.',
+    url: 'your-task-manager-link.vercel.app',
+    liveLink: 'https://task-manager-cyan-rho.vercel.app/',
+    techIcons: ['Mn', 'Js', 'Tw', 'Re'],
+    floatTags: ['MongoDB', 'JavaScript', 'Tailwind', 'React'],
+    image: '/projects/task-manager.png',
+    imageFit: 'contain'
+  },
 ]
 
 // ── EXPERIENCE ───────────────────────────────────────────────────
@@ -160,13 +173,13 @@ export const experience: ExperienceItem[] = [
     type: 'Remote',
     period: 'Feb 2026 – Apr 2026',
     badge: 'Web Dev',
-    bullets:[
-  'Worked on frontend development for a CRM tool',
-  'Built responsive UI components and integrated REST APIs',
-  'Implemented customer and lead management features',
-  'Improved dashboard UI and fixed bugs',
-  'Maintained clean and scalable codebase',
-  'Gained experience in debugging and optimization',
-],
+    bullets: [
+      'Worked on frontend development for a CRM tool',
+      'Built responsive UI components and integrated REST APIs',
+      'Implemented customer and lead management features',
+      'Improved dashboard UI and fixed bugs',
+      'Maintained clean and scalable codebase',
+      'Gained experience in debugging and optimization',
+    ],
   },
 ]
