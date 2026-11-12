@@ -20,7 +20,6 @@ interface OrbitRing {
 const orbitRings: OrbitRing[] = [
   { size: 200, duration: '18s', reverse: false },
   { size: 310, duration: '28s', reverse: true },
-  { size: 400, duration: '38s', reverse: false },
 ]
 
 export default function Skills() {

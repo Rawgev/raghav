@@ -9,7 +9,7 @@ export interface Skill {
   y: number
 }
 
-export type ProjectType = 'mern' | 'portfolio'
+export type ProjectType = 'mern' | 'portfolio' | 'fullstack' | 'ai-fullstack'
 
 export interface Project {
   id: string
@@ -33,6 +33,8 @@ export interface ExperienceItem {
   type: string
   period: string
   badge: string
+  subtitle?: string
+  link?: string
   bullets: string[]
 }
 
@@ -59,9 +61,9 @@ export const personal: Personal = {
   portfolioUrl: 'raghav-lac.vercel.app',        // 🔧 update once deployed
   roles: [
     'Full Stack Developer',
-    'React Developer',
-    'MERN Stack Dev',
-    'Problem Solver',
+    'Next.js & React Developer',
+    'Software Developer',
+    'AI Systems Developer',
   ],
   socials: {
     github: 'https://github.com/Rawgev',                       // 🔧 update
@@ -72,28 +74,22 @@ export const personal: Personal = {
 
 // ── TECH STACK (about section pills) ─────────────────────────────
 export const techStack: string[] = [
-  'MongoDB', 'React.js', 'Express', 'Node.js', 'JavaScript', 'TypeScript'
+  'React.js', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS'
 ]
 
 // ── SKILLS ORBIT ─────────────────────────────────────────────────
 export const skills: Skill[] = [
-  // orbit 1 — violet
+  // orbit 1 (inner) — violet
   { label: 'React', variant: 'violet', x: 0, y: -100 },
-  { label: 'Node.js', variant: 'violet', x: 100, y: 0 },
-  { label: 'Express', variant: 'violet', x: 0, y: 100 },
-  { label: 'MongoDB', variant: 'violet', x: -120, y: 0 },
+  { label: 'Next.js', variant: 'violet', x: 105, y: 0 },
+  { label: 'Node.js', variant: 'violet', x: 0, y: 100 },
+  { label: 'TypeScript', variant: 'violet', x: -105, y: 0 },
 
-  // orbit 2 — pink
-  { label: 'REST APIs', variant: 'pink', x: -190, y: 0 },
-  { label: 'Git', variant: 'pink', x: -120, y: 120 },
-  { label: 'Tailwind', variant: 'pink', x: 0, y: -165 },
-
-  // orbit 3 — teal
-  { label: 'Docker', variant: 'teal', x: 150, y: -145 },
-  { label: 'Vercel', variant: 'teal', x: 220, y: 0 },
-  { label: 'Postman', variant: 'teal', x: -250, y: 0 },
-  { label: 'VS Code', variant: 'teal', x: 0, y: 220 },
-  { label: 'Linux', variant: 'teal', x: -150, y: -145 },
+  // orbit 2 (outer diagonal) — pink & teal
+  { label: 'PostgreSQL', variant: 'pink', x: 110, y: -110 },
+  { label: 'Tailwind', variant: 'pink', x: 110, y: 110 },
+  { label: 'Git', variant: 'teal', x: -110, y: 110 },
+  { label: 'MongoDB', variant: 'teal', x: -110, y: -110 },
 ]
 // ── PROJECTS ─────────────────────────────────────────────────────
 export const projects: Project[] = [
@@ -110,18 +106,6 @@ export const projects: Project[] = [
     floatTags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'TypeScript', 'GraphQL', 'REST APIs'],
     image: '/projects/kiroku.png',
     imageFit: 'contain'
-  }, {
-    id: 'mern-todo',
-    type: 'mern',
-    title: 'MERN Todo App',
-    subtitle: 'Task Manager',
-    description: 'A full-stack todo app built with the MERN stack. Create, update, delete and manage tasks with a clean UI and persistent MongoDB storage.',
-    url: 'mern-todo-app-sable-five.vercel.app',
-    liveLink: 'https://mern-todo-app-sable-five.vercel.app',
-    techIcons: ['Re', 'Nd', 'Ex', 'Mg'],
-    floatTags: ['React', 'Node.js', 'Express.js', 'MongoDB'],
-    image: '/projects/todolist.png',
-    imageFit: 'cover'
   },
   {
     id: 'portfolio',
@@ -129,8 +113,8 @@ export const projects: Project[] = [
     title: 'Personal Portfolio',
     subtitle: 'This Website',
     description: 'My personal developer portfolio built with React. Features scroll animations, an orbiting skills section, typewriter effects and a dark violet aesthetic.',
-    url: 'raghav-lac.vercel.app',           // 🔧 update
-    liveLink: 'https://raghav-lac.vercel.app/', // 🔧 update once deployed
+    url: 'rawgev.vercel.app',
+    liveLink: 'https://rawgev.vercel.app/',
     techIcons: ['Re', 'Tw', 'Vt', 'Ts'],
     floatTags: ['React', 'Tailwind', 'Vite', 'CSS'],
     image: '/projects/portfolio.png',
@@ -138,48 +122,51 @@ export const projects: Project[] = [
   },
   {
     id: 'ai-crm-hcp-module',
-    type: 'mern',
-    title: 'AI CRM HCP Module',
-    subtitle: 'Healthcare CRM',
-    description: 'An AI-powered CRM module for managing HCP data, improving customer workflows and supporting smarter relationship management through a clean dashboard experience.',
-    url: 'ai-crm-hcp-module.vercel.app',
-    liveLink: 'https://ai-crm-hcp-module.vercel.app',
-    techIcons: ['Py', 'Js', 'Cs', 'Ht'],
-    floatTags: ['Python', 'JavaScript', 'CSS', 'HTML'],
+    type: 'fullstack',
+    title: 'Pharmaxora',
+    subtitle: 'AI CRM HCP Module',
+    description: 'An enterprise-grade, AI-first Healthcare Professional (HCP) CRM module featuring conversational LangGraph.js agents for compliant interaction logging, human-in-the-loop review, Next.js App Router, and PostgreSQL via Prisma.',
+    url: 'pharmaxora.vercel.app',
+    liveLink: 'https://pharmaxora.vercel.app/',
+    techIcons: ['Nx', 'Ts', 'Lg', 'Pg', 'Pr', 'Tw'],
+    floatTags: ['Next.js', 'TypeScript', 'LangGraph.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS'],
     image: '/projects/crm.png',
-    imageFit: 'cover'
-  },
-  {
-    id: 'task-manager-app',
-    type: 'mern',
-    title: 'Task Manager App',
-    subtitle: 'Productivity Management',
-    description: 'A modern MERN-based task management application that helps users organize tasks, manage workflows, track progress, and improve productivity through a responsive and clean dashboard interface.',
-    url: 'your-task-manager-link.vercel.app',
-    liveLink: 'https://task-manager-cyan-rho.vercel.app/',
-    techIcons: ['Mn', 'Js', 'Tw', 'Re'],
-    floatTags: ['MongoDB', 'JavaScript', 'Tailwind', 'React'],
-    image: '/projects/task-manager.png',
     imageFit: 'contain'
   },
 ]
 
+
 // ── EXPERIENCE ───────────────────────────────────────────────────
 export const experience: ExperienceItem[] = [
   {
-    id: 'soft7',
-    title: 'web developer intern',
-    company: 'SOFT7 Technology',
+    id: 'soft7-dev',
+    title: 'Full Stack Developer',
+    company: 'Soft7 Technology',
     type: 'Remote',
-    period: 'Feb 2026 – Apr 2026',
-    badge: 'Web Dev',
+    period: 'May 2026 – November 2026',
+    badge: 'Full Stack',
+    subtitle: 'Developed Collabix for the company as an integrated web platform and desktop application',
+    link: 'https://collabix.soft7.in',
     bullets: [
-      'Worked on frontend development for a CRM tool',
-      'Built responsive UI components and integrated REST APIs',
-      'Implemented customer and lead management features',
-      'Improved dashboard UI and fixed bugs',
-      'Maintained clean and scalable codebase',
-      'Gained experience in debugging and optimization',
+      'Built a full-stack project management platform using Next.js 15, PostgreSQL, and secure authentication.',
+      'Designed 7 PostgreSQL migrations covering projects, tasks, sprints, multi-tenancy, RBAC, and activity tracking.',
+      'Implemented secure dual-token authentication with CSRF protection, bcrypt hashing, and fine-grained RBAC middleware for permission-based API access.',
+      'Built dashboard aggregation services for real-time project progress, workload, and activity analytics.',
+      'Developed a production-ready Electron desktop companion with background screen capture, Web Workers, and optimized JPEG streaming.',
+    ],
+  },
+  {
+    id: 'soft7-bde',
+    title: 'Business Development Executive',
+    company: 'Soft7 Technology',
+    type: 'Remote',
+    period: 'February 2026 – May 2026',
+    badge: 'Tech Sales',
+    subtitle: 'Technical sales for WhatsApp Business API and business messaging solutions',
+    bullets: [
+      'Consulted business owners on WhatsApp Business API integration, pricing, and use cases, translating technical capabilities into clear business value.',
+      'Conducted 60+ daily outreach calls to identify and qualify potential clients.',
+      'Demonstrated WhatsApp Business API workflows, including bulk messaging, automation, and Meta-compliant messaging practices.',
     ],
   },
 ]

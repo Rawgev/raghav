@@ -92,10 +92,33 @@ export default function Experience() {
                       <span>{job.period}</span>
                     </div>
                   </div>
-                  <div style={{ fontSize: '0.68rem', padding: '3px 10px', borderRadius: 20, background: 'rgba(100,40,200,0.2)', border: '1px solid rgba(140,60,240,0.3)', color: 'var(--violet3)', whiteSpace: 'nowrap' }}>
-                    {job.badge}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                    {job.link && (
+                      <a
+                        href={job.link.startsWith('http') ? job.link : `https://${job.link}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          fontSize: '0.75rem',
+                          color: 'var(--violet3)',
+                          textDecoration: 'none',
+                        }}
+                        className="hover:underline"
+                      >
+                        {job.link.replace(/^https?:\/\//, '')} ↗
+                      </a>
+                    )}
+                    <div style={{ fontSize: '0.68rem', padding: '3px 10px', borderRadius: 20, background: 'rgba(100,40,200,0.2)', border: '1px solid rgba(140,60,240,0.3)', color: 'var(--violet3)', whiteSpace: 'nowrap' }}>
+                      {job.badge}
+                    </div>
                   </div>
                 </div>
+
+                {job.subtitle && (
+                  <div style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'rgba(215, 205, 255, 0.85)', marginBottom: '0.6rem' }}>
+                    {job.subtitle}
+                  </div>
+                )}
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   {job.bullets?.map((bullet, index) => (

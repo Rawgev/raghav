@@ -9,10 +9,11 @@ interface NavLink {
 }
 
 const links: NavLink[] = [
-  { label: 'About',      href: '#about' },
-  { label: 'Projects',   href: '#projects' },
-  { label: 'Skills',     href: '#skills' },
-  { label: 'Contact',    href: '#contact' },
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
@@ -89,7 +90,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               style={{ padding: '1rem 1.5rem', color: 'var(--muted)', textDecoration: 'none', fontSize: '0.95rem', borderBottom: '1px solid var(--border)', transition: 'color 0.2s, background 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.color = 'var(--violet3)'; e.currentTarget.style.background = 'rgba(120,50,220,0.08)' }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'var(--muted)';   e.currentTarget.style.background = 'transparent' }}
+              onMouseLeave={e => { e.currentTarget.style.color = 'var(--muted)'; e.currentTarget.style.background = 'transparent' }}
             >
               {link.label}
             </a>
