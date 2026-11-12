@@ -4,19 +4,13 @@ import SectionLabel from '../ui/SectionLabel'
 import { techStack } from '../../data'
 
 const codeBg = `// Raghav's stack
+import Next from 'next'
 import React from 'react'
-import express from 'express'
-import mongoose from 'mongoose'
+import { prisma } from '@/lib/db'
 
-const app = express()
-app.use(express.json())
-
-mongoose.connect(process.env.MONGO_URI)
-
-const App = () => {
-  const [todos, setTodos]
-    = useState([])
-  return <TodoList />
+export async function GET() {
+  const data = await prisma.project.findMany()
+  return Response.json(data)
 }`
 
 export default function About() {

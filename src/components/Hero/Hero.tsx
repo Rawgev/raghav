@@ -56,7 +56,7 @@ export default function Hero() {
     lineHeight: 1.7,
   }}
 >
-  Crafting immersive and modern web experiences with React, Javascript, TypeScript and MERN stack technologies.
+  Crafting production-grade web applications and AI-integrated workflows with Next.js, React, TypeScript, and PostgreSQL.
 </p>
 
       <MagicButton
