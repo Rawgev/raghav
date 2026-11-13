@@ -160,7 +160,7 @@ export const experience: ExperienceItem[] = [
     title: 'Business Development Executive',
     company: 'Soft7 Technology',
     type: 'Remote',
-    period: 'February 2026 – May 2026',
+    period: 'February 2026 – April 2026',
     badge: 'Tech Sales',
     subtitle: 'Technical sales for WhatsApp Business API and business messaging solutions',
     bullets: [
